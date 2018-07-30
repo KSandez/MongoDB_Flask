@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mission to Mars</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+
+<style>
+    .jumbotron {
+        background-color: rgb(141, 111, 111);
+    }
+
+    .btn-primary {
+        background-color: rgb(71, 50, 146)
+    }
+
+    h1 {
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-size: 100px;
+    }
+
+    body {
+        background-color: rgb(124, 61, 61);
+        color: white;
+        font-family: 'Courier New', Courier, monospace
+    }
+
+    /* #imgsidebar,
+    #featured {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+        box-shadow: 2px 2px 2px #5a5a5a;
+    } */
+
+    #innerrow {
+        text-align: center;
+    }
+
+    .col-md-12,
+    .col-md-6,
+    .col-md-8,
+    .col-md-4 {
+        padding: 2%;
+    }
+</style>
+
+<body>
+    <div class="jumbotron text-center">
+        <h1>🚀 Mission to Mars</h1>
+        <br>
+        <p>
+            <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape for New Data</a>
+        </p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>
+                <b>Latest Mars News</b>
+            </h2>
+
+            {{title}}
+            <br> {{paragraph}}
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <h2>
+                <b> Mars Image</b>
+            </h2>
+            <img src="{{featured_image}}">
+
+        </div>
+        <div class="col-md-4">
+            <h3>
+                <b>Current Weather on Mars</b>
+            </h3>
+            <br> {{weather}}
+
+            <br>
+            <br>
+
+            <h3>
+                <b>Mars Facts</b>
+            </h3>
+            <table border="1" class="dataframe">
+                <tr>
+                    <th>Description</th>
+                    <th>Value</th>
+                </tr>
+                {% for entry in mars_facts %}
+                <tr>
+                    <td>{{entry.Description}}</td>
+                    <td>{{entry.Fact}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12" align="center">
+            <h2>
+                <b>Mars Hemispheres</b>
+            </h2>
+            <hr>
+            <div class="row">
+                {% for hemipshere in hemispheres %}
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <img style="border-radius: 25px; border:1px solid black;" class="img-responsive center" src={{hemisphere.img_url}}>
+                        </div>
+                        <div class="panel-footer">{{hemisphere.title}}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+    crossorigin="anonymous"></script>
+
+</html>

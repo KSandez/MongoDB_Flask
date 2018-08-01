@@ -30,14 +30,9 @@
         font-family: 'Courier New', Courier, monospace
     }
 
-    /* #imgsidebar,
-    #featured {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 90%;
-        box-shadow: 2px 2px 2px #5a5a5a;
-    } */
+    .panel-footer {
+        background-color:  rgb(88, 33, 33);
+    }
 
     #innerrow {
         text-align: center;
@@ -60,32 +55,32 @@
         </p>
     </div>
 
-    <div class="row">
+    <div class="row" align="center">
         <div class="col-md-12">
             <h2>
                 <b>Latest Mars News</b>
             </h2>
 
-            {{title}}
-            <br> {{paragraph}}
+            {{marsDB.title}}
+            <br> {{marsDB.paragraph}}
 
 
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" align='center'>
         <div class="col-md-8">
             <h2>
                 <b> Mars Image</b>
             </h2>
-            <img src="{{featured_image}}">
+            <img src="{{marsDB.featured_image}}" width=600px class="img-responsive">
 
         </div>
         <div class="col-md-4">
             <h3>
                 <b>Current Weather on Mars</b>
             </h3>
-            <br> {{weather}}
+            <br> {{marsDB.weather[0]}}
 
             <br>
             <br>
@@ -98,10 +93,10 @@
                     <th>Description</th>
                     <th>Value</th>
                 </tr>
-                {% for entry in mars_facts %}
+                {% for entry in marsDB.mars_facts %}
                 <tr>
                     <td>{{entry.Description}}</td>
-                    <td>{{entry.Fact}}</td>
+                    <td>{{entry.Value}}</td>
                 </tr>
                 {% endfor %}
             </table>
@@ -116,13 +111,13 @@
             </h2>
             <hr>
             <div class="row">
-                {% for hemipshere in hemispheres %}
-                <div class="col-md-6">
+                {% for entry in marsDB.hemispheres %}
+                <div class="col-md-6" align='center'>
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <img style="border-radius: 25px; border:1px solid black;" class="img-responsive center" src={{hemisphere.img_url}}>
+                            <img style="border-radius: 5px; border:1px solid black;" class="img-responsive center" src={{entry.img_url}} width=500px>
                         </div>
-                        <div class="panel-footer">{{hemisphere.title}}</div>
+                        <div class="panel-footer">{{entry.title}}</div>
                     </div>
                 </div>
                 {% endfor %}

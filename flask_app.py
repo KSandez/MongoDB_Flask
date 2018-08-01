@@ -17,7 +17,7 @@ mongo = PyMongo(app)
 def home():
 
     # Fetch data from MongoDB
-    marsDB = list(mongo.db.collection.find())
+    marsDB = mongo.db.collection.find_one()
 
     return render_template("index.html", marsDB=marsDB)
 
@@ -27,10 +27,10 @@ def home():
 def scrape():
     
     client = MongoClient('localhost', 27017)
-    db = client['config']
+    db = client['marsDB']
 
-    if 'marsDB' in db.list_collection_names():
-        db.drop_collection('marsDB')
+    if 'collection' in db.list_collection_names():
+        db.drop_collection('collection')
 
     # Run scraped functions
     mars = scrape_mars.scrape()
